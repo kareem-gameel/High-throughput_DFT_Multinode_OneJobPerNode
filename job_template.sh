@@ -1,4 +1,6 @@
- # SLURM submission script for a single serial job on Niagara
+#!/bin/bash
+
+# SLURM submission script for a single serial job on Niagara
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1  # 1 task for 1 file
 #SBATCH --cpus-per-task=40    # Each task uses 40 CPUs
