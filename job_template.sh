@@ -1,25 +1,4 @@
-#!/bin/bash
-
-# Directory containing subdirectories
-parent_dir="molecule_subdirectories"
-
-# Loop over all subdirectories inside the parent directory
-for subdir in "$parent_dir"/subdir_*; do
-    if [ -d "$subdir" ]; then
-        # Get the subdirectory number (e.g., 001 from subdir_001)
-        subdir_number=$(basename "$subdir" | cut -d'_' -f2)
-
-        # Generate job.sh inside each subdir
-        sed "s/JOBID/$subdir_number/g" job_template.sh > "$subdir/job.sh"
-        
-        # Copy the run_psi4.py script to each subdir
-        cp run_psi4.py "$subdir/"
-    fi
-done
-gameelka@nia-login01:/scratch/o/ovoznyy/gameelka/psi4_remainder$ cat job_template.sh 
-#!/bin/bash
-
-# SLURM submission script for a single serial job on Niagara
+ # SLURM submission script for a single serial job on Niagara
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1  # 1 task for 1 file
 #SBATCH --cpus-per-task=40    # Each task uses 40 CPUs
